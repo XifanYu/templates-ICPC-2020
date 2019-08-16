@@ -1,12 +1,12 @@
 bool was[N];
-int cap[N][N];
+long long cap[N][N];
 
 struct FF
 {
     int n;
     FF(int nv) { n = nv; }
-    void add(int x, int y, int c) { cap[x][y] += c; }
-    bool push(int u, int sink, int capacity)
+    void add(int x, int y, long long c) { cap[x][y] += c; }
+    bool push(int u, int sink, long long capacity)
     {
         if (u == sink) return true;
         if (was[u]) return false;
@@ -16,9 +16,9 @@ struct FF
                 return cap[u][v] -= capacity, cap[v][u] += capacity, true;
         return false;
     }
-    int flow(int source, int sink)
+    long long flow(int source, int sink)
     {
-        int ret = 0, capacity = inf;
+        long long ret = 0, capacity = inf;
         while (capacity > 0)
         {
             if (push(source, sink, capacity)) ret += capacity;
